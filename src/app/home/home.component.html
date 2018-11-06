@@ -1,13 +1,13 @@
 <div>
   <p>
-    área de home 
+    área de exibição
   </p>
   <table>
     <thead>
       <tr>
-          <th>Name</th>
-          <th>Item Name</th>
-          <th>Item Price</th>
+          <th>Nome'</th>
+          <th>Item Nome</th>
+          <th>item Preço</th>
       </tr>
     </thead>
 
@@ -15,19 +15,24 @@
       <tr>
         <td>Alvin</td>
         <td>Eclair</td>
-        <td>$0.87</td>
+        <td>{{ unitValor | currency:'BRL':true }}</td>
       </tr>
       <tr>
         <td>Alan</td>
         <td>Jellybean</td>
-        <td>$3.76</td>
+        <td>{{ unitValor | currency:'BRL':true }}</td>
       </tr>
       <tr>
         <td>Jonathan</td>
         <td>Lollipop</td>
-        <td>$7.00</td>
+        <td>{{ unitValor | currency:'BRL':true }}</td>
       </tr>
     </tbody>
   </table>
+  <p>
+    <a class="btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
+  </p>
+
+    
 </div>
 
