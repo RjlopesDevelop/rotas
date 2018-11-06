@@ -1,8 +1,6 @@
 import { ptbrLocale } from './shared/pt-br-locale';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpModule } from '@angular/http';
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
@@ -25,8 +23,7 @@ registerLocaleData(localePt);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule,
-   // MaterializeModule
+    // MaterializeModule
   ],
   providers: [
     /*{
