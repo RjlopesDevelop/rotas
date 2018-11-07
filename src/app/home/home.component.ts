@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  unitValor = 7.00 ;
+  unitValor = 450.01 ;
 
   constructor() { }
 
