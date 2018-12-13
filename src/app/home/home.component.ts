@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   unitValor = 7.00 ;
   values: any[] = [];
 
+
   constructor(private http: Http ) { }
 
   ngOnInit() {
