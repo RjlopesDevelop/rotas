@@ -3,11 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SettingsService } from './shared/settings.service';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { TemplateFormComponent } from './template-form/template-form.component';
+import { DataFormComponent } from './data-form/data-form.component';
 
 
 // import { MaterializeModule } from 'angular2-materialize';
@@ -18,11 +21,14 @@ registerLocaleData(localePt);
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    TemplateFormComponent,
+    DataFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpModule,
     // MaterializeModule
   ],
   providers: [
