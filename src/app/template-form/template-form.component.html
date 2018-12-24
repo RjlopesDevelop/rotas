@@ -2,28 +2,28 @@
     <form #f="ngForm" class="col s12" (ngSubmit)="onSubmit(f)">
       <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" 
-          type="text" 
-          class="validate" 
-          name="nome"
-          [ngModel]="usuario.nome" required #nome="ngModel">
+          <input id="first_name"
+                 type="text"
+                 class="validate"
+                 name="nome"
+                 [ngModel]="usuario.nome" required #nome="ngModel">
           <div *ngIf="!nome.valid && nome.touched"
-          class="helper-text" data-error="Nome é obrigatório." role="alert">
-                </div>
+               class="helper-text" data-error="Nome é obrigatório." role="alert">
+          </div>
           <label for="first_name">Nome</label>
         </div>
         <div class="input-field col s6">
-            <input id="email" 
-            type="email" 
-            class="validate"
-            name="email"
-            [ngModel]="usuario.email" required #email="ngModel">
-            <div *ngIf="!email.valid && email.touched"
-             class="helper-text" data-error="email é obrigatório." role="alert">
-                </div>
-          
-            <label for="email">Email</label>
+          <input id="email"
+                 type="email"
+                 class="validate"
+                 name="email"
+                 [ngModel]="usuario.email" required #email="ngModel">
+          <div *ngIf="!email.valid && email.touched"
+               class="helper-text" data-error="email é obrigatório." role="alert">
           </div>
+
+          <label for="email">Email</label>
+        </div>
         </div>
         <button class="btn waves-effect waves-light" 
         type="submit" 
