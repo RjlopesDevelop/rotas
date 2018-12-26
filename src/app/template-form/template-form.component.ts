@@ -22,4 +22,8 @@ export class TemplateFormComponent implements OnInit {
     console.log(formulario.value);
   }
 
+  getvalidTouched(campo: any) {
+    return (!campo.valid && campo.touched);
+  }
+
 }
