@@ -20,10 +20,10 @@
       <div class="input-field col s3">
         <input type="text" name="cep" id="cep" 
         ngModel required #cep="ngModel" class="validate"
-        (blur)="getCep($event.target.value)">
+        (blur)="getCep($event.target.value, f)">
         <span *ngIf="getvalidTouched(cep)" class="helper-text" data-error="cep é obrigatório." role="alert">
         </span>
-        <label for="cep">CEP</label>
+        <label for="cep" >CEP</label>
       </div>
       <div class="input-field col s3">
         <input type="text" name="numero" id="numero" ngModel required #numero="ngModel" class="validate">
@@ -33,7 +33,7 @@
       </div>
       <div class="input-field col s6">
         <input type="text" name="complemento" id="complemento" ngModel #complemento="ngModel">
-        <label for="complemento">Complemento</label>
+        <label for="complemento" [ngClass]="{'active': flagActive}">Complemento</label>
       </div>
     </div>
 
@@ -43,7 +43,7 @@
         <input id="rua" type="text" class="validate" name="rua" ngModel required #rua="ngModel">
         <span *ngIf="getvalidTouched(rua)" class="helper-text" data-error="Rua é obrigatório." role="alert">
         </span>
-        <label for="rua">Rua</label>
+        <label for="rua" [ngClass]="{'active': flagActive}">Rua</label>
       </div>
     </div>
     <div class="row">
@@ -51,19 +51,19 @@
         <input id="bairro" type="text" class="validate" name="bairro" ngModel required #bairro="ngModel">
         <span *ngIf="getvalidTouched(bairro)" class="helper-text" data-error="bairro é obrigatório." role="alert">
         </span>
-        <label for="bairro">Bairro</label>
+        <label for="bairro" [ngClass]="{'active': flagActive}">Bairro</label>
       </div>
       <div class="input-field col s4">
         <input id="cidade" type="text" class="validate" name="cidade" ngModel required #cidade="ngModel">
         <span *ngIf="getvalidTouched(cidade)" class="helper-text" data-error="Cidade é obrigatório." role="alert">
         </span>
-        <label for="cidade">Cidade</label>
+        <label for="cidade" [ngClass]="{'active': flagActive}">Cidade</label>
       </div>
       <div class="input-field col s3">
         <input id="estado" type="text" class="validate" name="estado" ngModel required #estado="ngModel">
         <span *ngIf="getvalidTouched(estado)" class="helper-text" data-error="Estado é obrigatório." role="alert">
         </span>
-        <label for="estado">Estado</label>
+        <label for="estado" [ngClass]="{'active': flagActive}">Estado</label>
       </div>
     </div>
   </div>

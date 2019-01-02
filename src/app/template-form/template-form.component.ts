@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { Form } from '@angular/forms';
 
 
 
@@ -14,7 +15,7 @@ export class TemplateFormComponent implements OnInit {
     nome: '',
     email: ''
   };
-
+  flagActive = false;
   constructor(private http: Http) { }
 
   ngOnInit() {
@@ -28,7 +29,7 @@ export class TemplateFormComponent implements OnInit {
   getvalidTouched(campo: any) {
     return (!campo.valid && campo.touched);
   }
-  getCep(cep: any) {
+  getCep(cep: string, form: any) {
 
     // Nova variável "cep" somente com dígitos.
     cep = cep.replace(/\D/g, '');
@@ -36,6 +37,7 @@ export class TemplateFormComponent implements OnInit {
     // Verifica se campo cep possui valor informado.
     if (cep !== '') {
 
+      this.clearForm(form);
       // Expressão regular para validar o CEP.
       const validacep = /^[0-9]{8}$/;
 
@@ -43,9 +45,37 @@ export class TemplateFormComponent implements OnInit {
       if (validacep.test(cep)) {
 
         this.http.get(`//viacep.com.br/ws/${cep}/json`)
-          .subscribe(dados => console.log('retorno', dados.json()));
+          .subscribe(dados => this.setDadosForm(dados.json(), form));
       }
     }
+  }
+  setDadosForm(dados: any, formulario: any) {
+    // ativa classe label
+    this.flagActive = true;
+
+    formulario.form.patchValue({
+      endereco: {
+        bairro: dados.bairro,
+        cep: dados.cep,
+        cidade: dados.localidade,
+        complemento: dados.complemento,
+        estado: dados.uf,
+        rua: dados.logradouro
+      }
+    });
+
+  }
+
+  clearForm(formulario: any) {
+    formulario.form.patchValue({
+      endereco: {
+        bairro: null,
+        cidade: null,
+        complemento: null,
+        estado: null,
+        rua: null
+      }
+    });
   }
 
 }
