@@ -9,11 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { SettingsService } from './shared/settings.service';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { DataFormComponent } from './data-form/data-form.component';
 import { FormsModule } from '@angular/forms';
 import { TemplateFormModule } from './template-form/template-form.module';
-
-
+import { DataFormModule } from './data-form/data-form.module';
 // import { MaterializeModule } from 'angular2-materialize';
 
 registerLocaleData(localePt);
@@ -23,14 +21,15 @@ registerLocaleData(localePt);
   declarations: [
     AppComponent,
     HomeComponent,
-    DataFormComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
     FormsModule,
-    TemplateFormModule
+    TemplateFormModule,
+    DataFormModule
     // MaterializeModule
   ],
   providers: [
