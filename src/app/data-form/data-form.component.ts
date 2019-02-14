@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-data-form',
@@ -23,13 +23,13 @@ export class DataFormComponent implements OnInit {
     // });
 
     this.formulario = this.formBuilder.group({
-      nome:  [null],
-      email: [null]
+      nome:  [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]]
     });
+
+    // console.log(this.formulario);
   }
   onSubmit() {
-
-    console.log(this.formulario);
 
     this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
     .subscribe(dados => {
@@ -42,5 +42,8 @@ export class DataFormComponent implements OnInit {
   }
   resetar() {
     this.formulario.reset();
+  }
+  getvalidTouched(campo: any) {
+   return (!this.formulario.get(campo).valid  && this.formulario.get(campo).touched);
   }
 }
