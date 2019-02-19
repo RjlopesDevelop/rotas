@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Http } from '@angular/http';
+
 
 
 @Component({
@@ -13,7 +14,7 @@ export class DataFormComponent implements OnInit {
 
   formulario: FormGroup;
   constructor( private formBuilder: FormBuilder,
-               private http: Http
+               private http: HttpClient
     ) { }
 
   ngOnInit() {
@@ -91,7 +92,7 @@ export class DataFormComponent implements OnInit {
       if (validacep.test(cep)) {
 
         this.http.get(`//viacep.com.br/ws/${cep}/json`)
-          .subscribe(dados => this.setDadosForm(dados.json()));
+          .subscribe(dados => this.setDadosForm(dados));
       }
     }
   }
@@ -106,7 +107,7 @@ export class DataFormComponent implements OnInit {
       }
     });
   }
-  setDadosForm(dados: any) {
+  setDadosForm(dados) {
     // ativa classe label
      this.flagActive = true;
 
