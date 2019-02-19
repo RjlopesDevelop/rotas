@@ -1,0 +1,78 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="nome" type="text" class="validate" formControlName="nome" required>
+      <span *ngIf="getvalidTouched('nome')" class="helper-text" data-error="Nome é obrigatório" role="alert">
+        </span>
+      <label for="nome">Nome</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="email" type="email" class="validate" formControlName="email" required>
+      <span *ngIf="getvalidTouched('email')" class="helper-text" data-error="email é obrigatório" role="alert">
+      </span>
+      <label for="email">Email</label>
+    </div>
+  </div>
+  <div formGroupName="endereco">
+    <div class="row">
+      <div class="input-field col s3">
+        <input type="text" id="cep"  class="validate"  formControlName="cep"
+        (blur)="getCep();" >
+        <span *ngIf="getvalidTouched('endereco.cep')" class="helper-text" data-error="cep é obrigatório." role="alert">
+        </span>
+        <label for="cep" >CEP</label>
+      </div>
+      <div class="input-field col s3">
+        <input type="text" id="numero" class="validate" formControlName="numero" >
+        <span *ngIf="getvalidTouched('endereco.numero')" class="helper-text" data-error="Número é obrigatório." role="alert">
+        </span>
+        <label for="numero">Número</label>
+      </div>
+      <div class="input-field col s6">
+        <input type="text" id="complemento" formControlName="complemento" >
+        <label for="complemento" [ngClass]="{'active': flagActive}">Complemento</label>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="rua" type="text" class="validate" formControlName="rua" >
+        <span *ngIf="getvalidTouched('endereco.rua')" class="helper-text" data-error="Rua é obrigatório." role="alert">
+        </span>
+        <label for="rua" [ngClass]="{'active': flagActive}">Rua</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s5">
+        <input id="bairro" type="text" class="validate" formControlName="bairro">
+        <span *ngIf="getvalidTouched('endereco.bairro')" class="helper-text" data-error="bairro é obrigatório." role="alert">
+        </span>
+        <label for="bairro" [ngClass]="{'active': flagActive}">Bairro</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="cidade" type="text" class="validate" formControlName="cidade" >
+        <span *ngIf="getvalidTouched('endereco.cidade')" class="helper-text" data-error="Cidade é obrigatório." role="alert">
+        </span>
+        <label for="cidade" [ngClass]="{'active': flagActive}">Cidade</label>
+      </div>
+      <div class="input-field col s3">
+        <input id="estado" type="text" class="validate" formControlName="estado" >
+        <span *ngIf="getvalidTouched('endereco.estado')" class="helper-text" data-error="Estado é obrigatório." role="alert">
+        </span>
+        <label for="estado" [ngClass]="{'active': flagActive}">Estado</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s2">
+      <button class="btn waves-effect waves-light" type="submit" name="action">enviar </button>
+   </div>
+    <div class="col s3">
+        <button class="btn" (click)="resetar()">cancelar </button>
+    </div>
+  </div>
+  <app-form-debug [form]="formulario"></app-form-debug>
+</form>

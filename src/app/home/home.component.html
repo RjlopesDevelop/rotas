@@ -1,3 +1,72 @@
-<p>
-  home works!
-</p>
+<div>
+  <p>
+    área de exibição
+  </p>
+  <div *ngIf="values.length > 0">
+    <table>
+      <thead>
+        <tr>
+            <th>Id</th>
+            <th>Item Nome</th>
+            <th>item Grupo</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let item of values">
+          <td>{{ item.id }}</td>
+          <td>{{ item.nome }}</td>
+          <td>{{ item.grupo }}</td>
+       </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <!-- <br>
+
+  <table>
+    <thead>
+      <tr>
+          <th>Nome</th>
+          <th>Item Nome</th>
+          <th>item Preço</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Alvin</td>
+        <td>Eclair</td>
+        <td>{{ unitValor | currency:'BRL':true }}</td>
+      </tr>
+      <tr>
+        <td>Alan</td>
+        <td>Jellybean</td>
+        <td>{{ unitValor | currency:'BRL':true }}</td>
+      </tr>
+      <tr>
+        <td>Jonathan</td>
+        <td>Lollipop</td>
+        <td>{{ unitValor | currency:'BRL':true }}</td>
+      </tr>
+    </tbody>
+  </table> -->
+
+  
+  <p>
+    <a class="btn-floating btn-large cyan pulse"><i class="material-icons" (click) = "getValues()">edit</i></a>
+  </p>
+
+
+
+    <!-- <ul>
+      <li *ngFor="let item of values">{{ item.nome }} </li>
+    </ul> -->
+
+ 
+  <!-- {{ values | json }} -->
+  
+    
+</div>
+
