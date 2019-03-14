@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
-import { Form } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { CepSearchService } from '../shared/services/cep-search.service';
+
 
 
 
@@ -16,7 +17,8 @@ export class TemplateFormComponent implements OnInit {
     email: ''
   };
   flagActive = false;
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient,
+              private cepSearchService: CepSearchService) { }
 
   ngOnInit() {
   }
@@ -33,23 +35,11 @@ export class TemplateFormComponent implements OnInit {
   }
   getCep(cep: string, form: any) {
 
-    // Nova variável "cep" somente com dígitos.
-    cep = cep.replace(/\D/g, '');
-
     // Verifica se campo cep possui valor informado.
-    if (cep !== '') {
-
+    if (cep != null && cep !== '') {
       this.clearForm(form);
-      // Expressão regular para validar o CEP.
-      const validacep = /^[0-9]{8}$/;
-
-      // Valida o formato do CEP.
-      if (validacep.test(cep)) {
-
-        this.http.get(`//viacep.com.br/ws/${cep}/json`)
-          .subscribe(dados => this.setDadosForm(dados.json(), form));
-      }
-    }
+      this.cepSearchService.getCep(cep).subscribe(dados => this.setDadosForm(dados, form));
+   }
   }
   setDadosForm(dados: any, formulario: any) {
     // ativa classe label

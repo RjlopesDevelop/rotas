@@ -12,7 +12,7 @@ import localePt from '@angular/common/locales/pt';
 import { FormsModule } from '@angular/forms';
 import { TemplateFormModule } from './template-form/template-form.module';
 import { DataFormModule } from './data-form/data-form.module';
-// import { MaterializeModule } from 'angular2-materialize';
+
 
 registerLocaleData(localePt);
 
@@ -26,10 +26,10 @@ registerLocaleData(localePt);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule,
+   // HttpModule,
     FormsModule,
     TemplateFormModule,
-    DataFormModule
+    DataFormModule,
     // MaterializeModule
   ],
   providers: [

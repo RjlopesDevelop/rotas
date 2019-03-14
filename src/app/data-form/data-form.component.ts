@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { StateBr } from '../shared/models/state-br';
 import { DropdownService } from '../shared/services/dropdown.service';
+import { CepSearchService } from '../shared/services/cep-search.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -15,11 +17,14 @@ export class DataFormComponent implements OnInit {
   flagActive = false;
 
   formulario: FormGroup;
-  states: StateBr[];
+  // states: StateBr[];
+  states: Observable<StateBr[]>;
+  offices: any[];
 
   constructor( private formBuilder: FormBuilder,
                private http: HttpClient,
-               private dropdownService: DropdownService
+               private dropdownService: DropdownService,
+               private cepSearchService: CepSearchService,
     ) { }
 
   ngOnInit() {
@@ -40,11 +45,14 @@ export class DataFormComponent implements OnInit {
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
         estado: [null, Validators.required]
-      })
+      }),
+      office: [null]
     });
 
+    this.states = this.dropdownService.getStateBr();
     // console.log(this.formulario);
-    this.dropdownService.getStateBr().subscribe(dados => {this.states = dados; console.log(dados); } );
+   // this.dropdownService.getStateBr().subscribe(dados => {this.states = dados; console.log(dados); } );
+   this.offices = this.dropdownService.getOffice();
 
 
   }
@@ -84,24 +92,12 @@ export class DataFormComponent implements OnInit {
 
   getCep() {
 
-    let cep = this.formulario.get('endereco.cep').value;
-
-    // Nova variável "cep" somente com dígitos.
-    cep = cep.replace(/\D/g, '');
+    const cep = this.formulario.get('endereco.cep').value;
 
     // Verifica se campo cep possui valor informado.
-    if (cep !== '') {
-
-      this.clearForm();
-      // Expressão regular para validar o CEP.
-      const validacep = /^[0-9]{8}$/;
-
-      // Valida o formato do CEP.
-      if (validacep.test(cep)) {
-
-        this.http.get(`//viacep.com.br/ws/${cep}/json`)
-          .subscribe(dados => this.setDadosForm(dados));
-      }
+    if (cep != null && cep !== '') {
+       this.clearForm();
+       this.cepSearchService.getCep(cep).subscribe(dados => this.setDadosForm(dados));
     }
   }
   clearForm() {
@@ -130,5 +126,13 @@ export class DataFormComponent implements OnInit {
       }
     });
 
+  }
+
+  setoffice() {
+   const office =  {nome: 'Dev', nivel: 'Pleno', desc: 'Dev Pl' };
+   this.formulario.get('office').setValue(office);
+  }
+  compareOffice(obj1, obj2) {
+return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 && obj2 ;
   }
 }

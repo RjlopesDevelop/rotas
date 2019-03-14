@@ -59,11 +59,22 @@
         <label for="cidade" [ngClass]="{'active': flagActive}">Cidade</label>
       </div>
       <div class="input-field col s3">
-        <input id="estado" type="text" class="validate" formControlName="estado" >
-        <span *ngIf="getvalidTouched('endereco.estado')" class="helper-text" data-error="Estado é obrigatório." role="alert">
+        <select id="estado" class="validate" formControlName="estado" >
+          <option *ngFor="let state of states | async ">{{ state.nome }}</option>
+        </select>
+       <span *ngIf="getvalidTouched('endereco.estado')" class="helper-text" data-error="Estado é obrigatório." role="alert">
         </span>
-        <label for="estado" [ngClass]="{'active': flagActive}">Estado</label>
+        <label [ngClass]="{'active': true}">Estado</label>
       </div>
+      
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s3">
+      <select id="office"  formControlName="office" [compareWith]="compareOffice">
+        <option *ngFor="let office of offices " [ngValue]="office">{{ office.desc }}</option>
+      </select>
+      <label [ngClass]="{'active': true}">cargo</label>
     </div>
   </div>
   <div class="row">
@@ -73,6 +84,12 @@
     <div class="col s3">
         <button class="btn" (click)="resetar()">cancelar </button>
     </div>
+    <div class="col s3">
+        <button class="btn" (click)="setoffice()">cargo default </button>
+    </div>
   </div>
   <app-form-debug [form]="formulario"></app-form-debug>
+
+ 
 </form>
+
