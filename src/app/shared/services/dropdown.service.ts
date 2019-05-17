@@ -10,7 +10,8 @@ export class DropdownService {
   constructor(private http: HttpClient) { }
 
   getStateBr() {
-    return this.http.get<StateBr[]>('assets/dados/stateBr.json');
+    // return this.http.get<StateBr[]>('assets/dados/stateBr.json');
+    return this.http.get<StateBr[]>('http://localhost:3000/status');
   }
 
   getOffice() {
