@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { IHero } from './IHero';
 
 @Component({
   selector: 'app-home',
@@ -9,18 +10,19 @@ import { Http } from '@angular/http';
 export class HomeComponent implements OnInit {
 
   unitValor = 7.00 ;
-  values: any[] = [];
+  avengers: IHero;
 
 
-  constructor(private http: Http ) { }
+  constructor(private http: HttpClient) {
+    }
 
   ngOnInit() {
-
+console.log('lista end oninit', this.avengers);
   }
 
-  public getValues(): void {
+  public getAvengers(): void {
     try {
-      this.http.get(`http://localhost:5000/api/values`).subscribe( response => this.values = response.json());
+      this.http.get(`http://localhost:5000/api/values`).subscribe( (response: IHero) => this.avengers = response);
     } catch (error) {
       console.error(error);
     }

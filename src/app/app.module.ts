@@ -1,6 +1,6 @@
 import { ptbrLocale } from './shared/pt-br-locale';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HttpModule } from '@angular/http';
@@ -12,6 +12,7 @@ import localePt from '@angular/common/locales/pt';
 import { FormsModule } from '@angular/forms';
 import { TemplateFormModule } from './template-form/template-form.module';
 import { DataFormModule } from './data-form/data-form.module';
+import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 
 
 registerLocaleData(localePt);
@@ -20,8 +21,7 @@ registerLocaleData(localePt);
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +42,8 @@ registerLocaleData(localePt);
       provide: LOCALE_ID,
       deps: [SettingsService],
       useFactory: ptbrLocale
-    }
+    },
+
   ],
   bootstrap: [AppComponent]
 })
