@@ -1,7 +1,7 @@
 <div>
-  <p>
+  <h1>
     área de exibição
-  </p>
+  </h1>
   <div *ngIf="avengers !== undefined">
     <table>
       <thead>
@@ -14,7 +14,7 @@
   
       <tbody>
         <tr *ngFor="let item of avengers">
-          <td>{{ item.id }}</td>
+          <td ><a (click)="setHero(item.id)">{{ item.id }}</a> </td>
           <td>{{ item.nome }}</td>
           <td>{{ item.grupo }}</td>
        </tr>
