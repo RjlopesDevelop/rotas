@@ -14,7 +14,7 @@
   
       <tbody>
         <tr *ngFor="let item of avengers">
-          <td ><a (click)="setHero(item.id)">{{ item.id }}</a> </td>
+          <td ><a (click)="setHero(item)">{{ item.id }}</a> </td>
           <td>{{ item.nome }}</td>
           <td>{{ item.grupo }}</td>
        </tr>

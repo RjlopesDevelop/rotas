@@ -18,27 +18,27 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-   // console.log('lista end oninit', this.avengers);
+    // console.log('lista end oninit', this.avengers);
   }
 
   public getAvengers(): void {
     try {
-     // this.http.get(`http://localhost:5000/api/values`).subscribe((response: IHero) => this.avengers = response);
-     this.homeService.getAvengers().subscribe(
-            (response: IHero) => this.avengers = response,
-            error => console.error(error));
-    } catch (error) {
-     console.error(error);
-    }
-  }
-  public setHero(id: any): void {
-    console.log('setHero', id);
-    try {
-      this.homeService.postHero(id).subscribe((response: any) => console.log('resposta: ', response));
+      // this.http.get(`http://localhost:5000/api/values`).subscribe((response: IHero) => this.avengers = response);
+      this.homeService.getAvengers().subscribe(
+        (response: IHero) => this.avengers = response,
+        error => console.error(error));
     } catch (error) {
       console.error(error);
     }
- 
+  }
+  public setHero(model: IHero): void {
+    console.log('setHero', model);
+    try {
+      this.homeService.postHero(model).subscribe((response: any) => console.log('resposta: ', response));
+    } catch (error) {
+      console.error(error);
+    }
+
 
   }
 

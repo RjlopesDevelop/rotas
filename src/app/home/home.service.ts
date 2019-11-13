@@ -9,9 +9,9 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class HomeService {
 
-  private httpOptions  = {
+  private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
+      'Content-Type': 'application/json',
       'Authorization': 'my-auth-token'
     })
   };
@@ -22,13 +22,13 @@ export class HomeService {
     return this.http.get(`http://localhost:5000/api/values`).pipe(
       map((result: IHero) => result),
       catchError((err: HttpErrorResponse) => throwError(console.error()))
-      );
+    );
   }
   /**
    * post
    */
-  public postHero(id: number): Observable<string> {
-    return this.http.post<string>(`http://localhost:5000/api/values/`, id , this.httpOptions ).pipe(
+  public postHero(model: IHero): Observable<string> {
+    return this.http.put<string>(`http://localhost:5000/api/values/id`, model, this.httpOptions).pipe(
       map((response: any) => response)
     );
   }
